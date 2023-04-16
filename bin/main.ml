@@ -1,5 +1,7 @@
 open Files
 
 let () =
-  let _ = Line_processor.read_lines "/tmp/f1.txt" in
-  print_endline "\nHello, World!"
+  let lines = Line_processor.read_lines "/tmp/f1.txt" in
+  let line = String.concat "\n" lines in
+  print_endline "\nHello, World!";
+  print_endline line
