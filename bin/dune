@@ -1,4 +1,5 @@
 (executable
  (public_name files)
  (name main)
+ (modes byte exe)
  (libraries files))

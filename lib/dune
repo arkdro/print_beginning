@@ -1,7 +1,9 @@
 (library
  (name files)
- (libraries str))
+ (libraries str unix))
 
 (env
  (dev
-  (flags (:standard -warn-error -A))))
+  (flags (:standard -warn-error -A)))
+ (release
+  (ocamlopt_flags (:standard -O3))))
