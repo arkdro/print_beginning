@@ -25,8 +25,11 @@ find . -type f -name '[0-9]*.txt' |\
 All parameters are optional.
 
 `DIR` - directory to search. Default: current directory.
+
 `-n N` - number of lines to print. Default: 5.
+
 `-m MATCH` - regex to find files. Default: `[0-9].*\.txt.*`.
+
 `-c` - compact: don't print filename, don't print empty line after the file. Default: false.
 
 ## build
