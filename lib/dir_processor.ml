@@ -59,9 +59,17 @@ let print_newline_if_needed compact =
   | false ->
      print_endline ""
 
+let print_header_if_needed file compact =
+  match compact with
+  | true ->
+     ()
+  | false ->
+     print_endline ("==> " ^ file ^ " <==")
+
 let print_one_file file n_lines compact =
   let lines = Line_processor.read_lines file ~max_lines:n_lines in
   let line = String.concat "\n" lines in
+  print_header_if_needed file compact;
   print_endline line;
   print_newline_if_needed compact
 
