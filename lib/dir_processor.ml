@@ -1,7 +1,25 @@
 (* open Str *)
 
+let read_one_dir dir =
+  ([], [])
+
 let get_list_of_files directory =
-  ["/tmp/f1.txt"; "/tmp/321.txt"; "652.txt"]
+  let dirs = [directory] in
+  let files = [[]] in
+  let acc = (dirs, files) in
+  let rec loop acc =
+    match acc with
+    | ([], list_of_list_of_files) ->
+       List.flatten list_of_list_of_files
+    | (dir :: dirs, list_of_list_of_files) ->
+       (
+         let (new_dirs, new_files) = read_one_dir dir in
+         let new_acc = (dirs @ new_dirs, new_files :: list_of_list_of_files ) in
+         loop new_acc
+       )
+  in
+  loop acc
+  (* ["/tmp/f1.txt"; "/tmp/321.txt"; "652.txt"] *)
 
 let get_base_name file =
   Filename.basename file
