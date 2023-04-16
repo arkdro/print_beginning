@@ -5,11 +5,18 @@ let read_one_dir dir =
   let rec loop ((dirs, files) as acc) =
     try
       let item = Unix.readdir handle in
-      match Sys.is_directory item with
-      | true ->
-         loop (item::dirs, files)
-      | false ->
-         loop (dirs, item::files)
+      match item with
+      | "." | ".." ->
+         loop acc
+      | _ ->
+         (
+           let item_with_dir = Filename.concat dir item in
+           match Sys.is_directory item_with_dir with
+           | true ->
+              loop (item_with_dir :: dirs, files)
+           | false ->
+              loop (dirs, item_with_dir :: files)
+         )
     with End_of_file ->
       acc
   in
