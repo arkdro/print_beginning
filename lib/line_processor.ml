@@ -1,7 +1,6 @@
-
 let read_one_line fd = input_line fd
 
-let read_lines filename max_lines =
+let read_lines filename ?(max_lines = Defaults.default_max_lines) =
   let f = open_in filename in
   let rec loop counter max_lines =
     match counter with
@@ -17,6 +16,3 @@ let read_lines filename max_lines =
           [])
   in
   loop 0 max_lines
-
-let read_lines filename =
-  read_lines filename Defaults.default_max_lines

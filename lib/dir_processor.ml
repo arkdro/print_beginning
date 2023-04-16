@@ -53,7 +53,9 @@ let filter_matched_files files file_regex =
   List.filter (function x -> file_matches x file_regex) files
 
 let print_one_file file n_lines =
-  Printf.printf "%s %i\n" file n_lines
+  let lines = Line_processor.read_lines file ~max_lines:n_lines in
+  let line = String.concat "\n" lines in
+  print_endline line
 
 let print_files files n_lines =
   print_endline "The result:";
