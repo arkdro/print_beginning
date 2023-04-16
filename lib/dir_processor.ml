@@ -1,7 +1,19 @@
 (* open Str *)
 
 let read_one_dir dir =
-  ([], [])
+  let handle = Unix.opendir dir in
+  let rec loop ((dirs, files) as acc) =
+    try
+      let item = Unix.readdir handle in
+      match Sys.is_directory item with
+      | true ->
+         loop (item::dirs, files)
+      | false ->
+         loop (dirs, item::files)
+    with End_of_file ->
+      acc
+  in
+  loop ([], [])
 
 let get_list_of_files directory =
   let dirs = [directory] in
