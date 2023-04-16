@@ -5,7 +5,7 @@ let read_lines filename max_lines =
   let f = open_in filename in
   let rec loop counter max_lines =
     match counter with
-    | n when n = max_lines ->
+    | n when n >= max_lines ->
         close_in f;
         []
     | _ -> (
