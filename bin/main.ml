@@ -1,5 +1,5 @@
-(* open Files *)
+open Files
 
 let () =
-  (* Files.read_lines "/tmp/f1.txt" *)
+  let _ = Line_processor.read_lines "/tmp/f1.txt" in
   print_endline "\nHello, World!"
