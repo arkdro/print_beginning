@@ -20,6 +20,7 @@ let read_one_dir dir =
     with End_of_file ->
       acc
   in
+  Unix.closedir handle;
   loop ([], [])
 
 let get_list_of_files directory =
