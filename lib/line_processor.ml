@@ -1,4 +1,4 @@
-let default_max_lines = 5
+
 let read_one_line fd = input_line fd
 
 let read_lines filename max_lines =
@@ -19,4 +19,4 @@ let read_lines filename max_lines =
   loop 0 max_lines
 
 let read_lines filename =
-  read_lines filename default_max_lines
+  read_lines filename Defaults.default_max_lines
