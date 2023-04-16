@@ -52,18 +52,24 @@ let file_matches file file_regex =
 let filter_matched_files files file_regex =
   List.filter (function x -> file_matches x file_regex) files
 
-let print_one_file file n_lines =
+let print_newline_if_needed compact =
+  match compact with
+  | true ->
+     ()
+  | false ->
+     print_endline ""
+
+let print_one_file file n_lines compact =
   let lines = Line_processor.read_lines file ~max_lines:n_lines in
   let line = String.concat "\n" lines in
-  print_endline line
+  print_endline line;
+  print_newline_if_needed compact
 
-let print_files files n_lines =
-  print_endline "The result:";
-  List.iter (fun x -> print_one_file x n_lines) files;
-  print_endline "end of result"
+let print_files files n_lines compact =
+  List.iter (fun x -> print_one_file x n_lines compact) files
 
-let process_dir directory n_lines file_match =
+let process_dir directory n_lines file_match compact =
   let files = get_list_of_files directory in
   let file_regex = Str.regexp file_match in
   let matched_files = filter_matched_files files file_regex in
-  print_files matched_files n_lines
+  print_files matched_files n_lines compact
