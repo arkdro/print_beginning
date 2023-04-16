@@ -76,8 +76,12 @@ let print_one_file file n_lines compact =
 let print_files files n_lines compact =
   List.iter (fun x -> print_one_file x n_lines compact) files
 
+let sort_files files =
+  List.sort String.compare files
+
 let process_dir directory n_lines file_match compact =
   let files = get_list_of_files directory in
   let file_regex = Str.regexp file_match in
   let matched_files = filter_matched_files files file_regex in
-  print_files matched_files n_lines compact
+  let sorted_files = sort_files matched_files in
+  print_files sorted_files n_lines compact
