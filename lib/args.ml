@@ -1,6 +1,6 @@
 let get_args () =
   let usage_msg = "PROG [Directory] [-n Number_of_lines]" in
-  let directory = ref "" in
+  let directory = ref Defaults.default_directory in
   let n_lines = ref Defaults.default_n_lines_arg in
   let anon_fn in_dir = directory := in_dir in
   let speclist =
